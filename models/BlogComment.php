@@ -32,7 +32,7 @@ class BlogComment extends \yii\db\ActiveRecord
      */
     public static function tableName()
     {
-        return 'blog_comment';
+        return '{{%blog_comment}}';
     }
 
     /**
@@ -145,8 +145,8 @@ class BlogComment extends \yii\db\ActiveRecord
     public static  function findRecentComments($limit=10)
     {
         return self::find()->joinWith('blogPost')->where([
-            'blog_comment.status' => Status::STATUS_ACTIVE,
-            'blog_post.status' => Status::STATUS_ACTIVE,
+            Yii::$app->db->tablePrefix.'blog_comment.status' => Status::STATUS_ACTIVE,
+            Yii::$app->db->tablePrefix  .'blog_post.status' => Status::STATUS_ACTIVE,
         ])->orderBy([
             'created_at' => SORT_DESC
         ])->limit($limit)->all();

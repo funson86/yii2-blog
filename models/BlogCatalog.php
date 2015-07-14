@@ -40,7 +40,7 @@ class BlogCatalog extends \yii\db\ActiveRecord
      */
     public static function tableName()
     {
-        return 'blog_catalog';
+        return '{{%blog_catalog}}';
     }
 
     /**

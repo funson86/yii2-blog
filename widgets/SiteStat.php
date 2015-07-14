@@ -24,14 +24,14 @@ class SiteStat extends Widget
 
         $query = new Query();
         $res = $query->select('sum(click) as click')
-            ->from('blog_post')->one();
+            ->from(\Yii::$app->db->tablePrefix .'blog_post')->one();
         $click = $res['click'];
         $str .= '<div class="site-stat">点击数量：'.$click.'</div>';
 
-        $postCount = $query->from('blog_post')->count();
+        $postCount = $query->from(\Yii::$app->db->tablePrefix .'blog_post')->count();
         $str .= '<div class="site-stat">文章数量：'.$postCount.'</div>';
 
-        $commentCount = $query->from('blog_comment')->count();
+        $commentCount = $query->from(\Yii::$app->db->tablePrefix .'blog_comment')->count();
         $str .= '<div class="site-stat">评论数量：'.$commentCount.'</div>';
 
         return $this->render('portal', [
