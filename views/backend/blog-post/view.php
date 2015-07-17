@@ -33,7 +33,6 @@ $this->params['breadcrumbs'][] = $this->title;
                 'value' => $model->catalog->title,
             ],
             'title',
-            'content:ntext',
             'tags',
             'surname',
             'click',
@@ -49,5 +48,10 @@ $this->params['breadcrumbs'][] = $this->title;
             'updated_at:datetime',
         ],
     ]) ?>
-
 </div>
+<hr/>
+<?php
+    $parser = new \cebe\markdown\GithubMarkdown();
+    echo $parser->parse($model->content);
+?>
+
