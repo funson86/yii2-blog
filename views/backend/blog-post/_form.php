@@ -6,6 +6,7 @@ use yii\widgets\ActiveForm;
 use yii\helpers\ArrayHelper;
 use funson86\blog\models\BlogCatalog;
 use kartik\markdown\MarkdownEditor;
+use mihaildev\ckeditor\CKEditor;
 
 /* @var $this yii\web\View */
 /* @var $model backend\modules\blog\models\BlogPost */
@@ -20,7 +21,12 @@ use kartik\markdown\MarkdownEditor;
 
     <?= $form->field($model, 'title')->textInput(['maxlength' => 128]) ?>
 
-    <?= $form->field($model, 'content')->textarea(['rows' => 6]) ?>
+    <?= $form->field($model, 'content')->widget(CKEditor::className(),[
+        'editorOptions' => [
+            'preset' => 'full',
+            'inline' => false,
+        ],
+    ]); ?>
 
     <?= $form->field($model, 'tags')->textInput(['maxlength' => 128]) ?>
 
